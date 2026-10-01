@@ -38,6 +38,13 @@ const UA =
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 const isImageUrl = (u) => /\.(png|jpe?g|gif|webp|svg|avif|ico)$/i.test(u)
+
+/**
+ * Referencias relativas a la raiz que WordPress emite en los CSS de Elementor
+ * (fondos de seccion, texturas): `/wp-content/uploads/...`. El inventario
+ * principal solo recoge URLs absolutas, asi que se escanean aparte.
+ */
+const ROOT_RELATIVE = /["'( ](\/(?:wp-content|wp-includes)\/[^"')]+)/g
 const isTextUrl = (u) => /\.(css|woff2?|ttf|otf|eot)$/i.test(u)
 
 /**
@@ -243,12 +250,14 @@ async function mirrorModel(slug, remotePath, { assets = true } = {}) {
     }
   }
 
-  const entries = [...found].map((clean) => ({
+  const makeEntry = (clean) => ({
     clean,
     local: isImageUrl(clean)
       ? `/images/models/${slug}/${localName(clean)}`
       : `/invitacion/${slug}/assets/${localName(clean)}`,
-  }))
+  })
+
+  const entries = [...found].map(makeEntry)
 
   // Los assets en runtime conservan su estructura de carpetas bajo `rt/`, porque
   // Elementor los resuelve a partir de una URL base, no de un nombre suelto.
@@ -258,12 +267,10 @@ async function mirrorModel(slug, remotePath, { assets = true } = {}) {
     runtime: true,
   }))
 
-  const all = entries.concat(runtimeEntries)
-
   // Descarga (respeta lo ya existente). El ritmo es deliberadamente lento:
   // encadenar peticiones sin pausa es lo que provoca los 404/500 del origen.
-  if (assets) {
-    for (const e of all) {
+  const downloadAll = async (list) => {
+    for (const e of list) {
       const r = await download(e.clean, toLocalPath(e.local))
       if (r.startsWith('fail') || r === 'empty') {
         console.log(`\n    ! ${r} ${e.clean}`)
@@ -273,14 +280,47 @@ async function mirrorModel(slug, remotePath, { assets = true } = {}) {
     }
   }
 
+  let all = entries.concat(runtimeEntries)
+  if (assets) {
+    await downloadAll(all)
+
+    // Segunda pasada: los CSS de Elementor (los `uploads_elementor_css_post-*`)
+    // declaran los fondos de sección con rutas relativas a la raiz
+    // (`/wp-content/uploads/...`), que el inventario de URLs absolutas no ve.
+    // Sin esto, los heroes y texturas salen rotos en la replica.
+    const known = new Set(all.map((e) => e.clean))
+    const extra = []
+    for (const e of all) {
+      if (!isTextUrl(e.clean)) continue
+      const dest = toLocalPath(e.local)
+      if (!fs.existsSync(dest)) continue
+      for (const m of fs.readFileSync(dest, 'utf8').matchAll(ROOT_RELATIVE)) {
+        const url = ORIGIN + m[1].split('?')[0].split('#')[0]
+        if (known.has(url)) continue
+        known.add(url)
+        extra.push(makeEntry(url))
+      }
+    }
+    if (extra.length) {
+      console.log(`\n    + ${extra.length} assets referenciados desde el CSS`)
+      all = all.concat(extra)
+      await downloadAll(extra)
+    }
+  }
+
   // Reescritura global de URLs, del más largo al más corto para que las
   // coincidencias parciales no pisen a las definitivas.
-  const map = entries.slice().sort((a, b) => b.clean.length - a.clean.length)
+  const map = all.slice().sort((a, b) => b.clean.length - a.clean.length)
   const applyMap = (text) => {
     let out = text
     for (const e of map) {
       out = out.split(e.clean).join(e.local)
       out = out.split(e.clean.replace(/\//g, '%2F')).join(e.local)
+      // Mismo recurso en forma relativa a la raiz, tal como aparece dentro de
+      // los CSS de Elementor.
+      if (e.clean.startsWith(ORIGIN + '/')) {
+        out = out.split(e.clean.slice(ORIGIN.length)).join(e.local)
+      }
     }
     // Rewrites globales para no salir al sitio original
     for (const [src, dst] of SITE_REWRITES) {
