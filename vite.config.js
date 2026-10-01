@@ -53,10 +53,13 @@ function mirroredInvitations() {
 
 /**
  * Los documentos replicados y sus CSS son archivos estáticos que Vite copia
- * tal cual, así que NO les aplica el `base` automáticamente. En un sitio de
- * proyecto de GitHub Pages (usuario.github.io/REPO) todas sus rutas absolutas
- * (/invitacion/..., /images/...) quedarían colgando y se romperían, de modo que
- * las reescribimos sobre dist una vez construido.
+ * tal cual, así que NO les aplica el `base` automáticamente. Sus rutas
+ * absolutas (/invitacion/..., /images/...) quedarían colgando si el sitio se
+ * publica bajo un subpath, de modo que las reescribimos sobre dist al
+ * construir.
+ *
+ * En Cloudflare Pages el sitio suele vivir en la raíz (BASE_PATH vacío), en
+ * cuyo caso no hay nada que reescribir y esto es un no-op.
  */
 function basePathForMirrors() {
   let base = '/'
@@ -67,14 +70,8 @@ function basePathForMirrors() {
       base = config.base.endsWith('/') ? config.base : `${config.base}/`
     },
     closeBundle() {
-      if (base === '/') return
       const outDir = path.resolve('dist')
       if (!fs.existsSync(outDir)) return
-
-      // HTML replicado: href="/..." y src="/..."
-      const html = (t) => t.replace(/(href|src)="\/(?!\/)/g, `$1="${base}`)
-      // CSS: url(/...) sin comillas y url("/...")
-      const css = (t) => t.replace(/url\((["']?)\/(?!\/)/g, `url($1${base}`)
 
       let touched = 0
       const walk = (dir) => {
@@ -83,23 +80,40 @@ function basePathForMirrors() {
           if (item.isDirectory()) {
             walk(full)
           } else if (/\.html$/.test(item.name)) {
-            fs.writeFileSync(full, html(fs.readFileSync(full, 'utf8')), 'utf8')
-            touched++
+            const before = fs.readFileSync(full, 'utf8')
+            // Rutas absolutas en atributos y en url() dentro de <style> inline.
+            // El negative lookahead evita romper https:// y data:.
+            const after = before
+              .replace(/(href|src|poster)="\/(?!\/)/g, `$1="${base}`)
+              .replace(/url\((["']?)\/(?!\/)/g, `url($1${base}`)
+            if (after !== before) {
+              fs.writeFileSync(full, after, 'utf8')
+              touched++
+            }
           } else if (/\.css$/.test(item.name)) {
-            fs.writeFileSync(full, css(fs.readFileSync(full, 'utf8')), 'utf8')
+            const before = fs.readFileSync(full, 'utf8')
+            fs.writeFileSync(full, before.replace(/url\((["']?)\/(?!\/)/g, `url($1${base}`), 'utf8')
           }
         }
       }
       walk(outDir)
-      console.log(`  base ${base} aplicado a ${touched} documentos`)
+      if (base === '/') {
+        console.log('  base raíz: sin reescritura de rutas necesaria')
+      } else {
+        console.log(`  base ${base} aplicado a ${touched} documentos`)
+      }
     },
   }
 }
 
 /**
- * GitHub Pages no hace fallback de SPA: una ruta como /mis-15 o
- * /invitacion/rosa-pastel daría 404. Publicamos 404.html, que es el index con
- * un pequeño script que redirige a la ruta real conservando el query.
+ * Cloudflare Pages sirve 404.html cuando no encuentra un fichero, así que este
+ * es el salvavidas para rutas de la SPA (/mis-15, /eventos,
+ * /invitacion/rosa-pastel). Basta una copia del index: React Router ya lee la
+ * ruta real de location y monta lo que corresponda.
+ *
+ * Ojo: NO se redirige a "/" porque eso perdería el query (?nombre=...) y
+ * dejaría al router en la página inicial.
  */
 function spaFallbackForPages() {
   return {
@@ -109,16 +123,8 @@ function spaFallbackForPages() {
       const outDir = path.resolve('dist')
       const index = path.join(outDir, 'index.html')
       if (!fs.existsSync(index)) return
-      const html = fs.readFileSync(index, 'utf8')
-      const redirect = `<script>
-        // GitHub Pages sirve este documento para rutas sin fichero propio.
-        var p = location.pathname.replace(/\\/index\\.html$/, '');
-        var base = document.querySelector('script[src]')?.src.split('/').slice(0, -1).join('/') || '/';
-        sessionStorage.setItem('pages:redirect', p + location.search);
-        location.replace(base + '/');
-      </script>`
-      fs.writeFileSync(path.join(outDir, '404.html'), html.replace('</body>', `${redirect}</body>`), 'utf8')
-      console.log('  404.html generado para el fallback de Pages')
+      fs.copyFileSync(index, path.join(outDir, '404.html'))
+      console.log('  404.html generado (fallback SPA)')
     },
   }
 }
