@@ -1,0 +1,105 @@
+:root {
+  --color-primary: #C7BDB1;
+  --color-secondary: #E3DCD5;
+  --color-dark: #393939;
+  --color-black: #000000;
+  --color-light: #FFFDFD;
+  --color-accent: #FFFFFF;
+  --color-gold: #c9a87c;
+  
+  --font-body: 'Marcellus', sans-serif;
+  --font-heading: 'Cormorant', serif;
+  --font-script: 'MonteCarlo', cursive;
+  --font-serif-alt: 'Lora', serif;
+
+  --border-radius-main: 20px;
+  --transition-smooth: all 0.3s ease;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+  
+  --gradient-primary: linear-gradient(135deg, #C7BDB1 0%, #E3DCD5 100%);
+  --gradient-gold: linear-gradient(135deg, #e8d5b7 0%, #c9a87c 100%);
+  --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-black);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+
+.font-script {
+  font-family: var(--font-script);
+  text-transform: none;
+  font-weight: 400;
+  color: var(--color-primary);
+  font-size: 2.5em;
+}
+
+button, .btn {
+  background-color: var(--color-primary);
+  color: var(--color-accent);
+  border: none;
+  border-radius: var(--border-radius-main);
+  padding: 12px 28px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover, .btn:hover {
+  background-color: #a69a8e; /* Slightly darker primary */
+}
+
+.section {
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}

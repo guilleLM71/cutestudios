@@ -1,0 +1,101 @@
+.package-card {
+  background: var(--color-light);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  padding: 3rem 2rem;
+  text-align: center;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.package-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.package-price {
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+
+.package-tag {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  opacity: 0.7;
+}
+
+.package-label {
+  font-family: var(--font-serif-alt);
+  font-style: italic;
+  color: var(--color-primary);
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.package-name {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-black);
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.package-desc {
+  color: var(--color-dark);
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 300px;
+}
+
+.package-catalog-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.package-reserve {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-black);
+  margin-bottom: 1.2rem;
+  margin-top: auto;
+}
+
+.package-reserve strong {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+
+.package-btn {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-accent);
+  padding: 1.2rem 2rem;
+  border-radius: 0;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: 2px;
+  transition: var(--transition-smooth);
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.package-btn:hover {
+  background: #b5a99c;
+}

@@ -1,0 +1,1264 @@
+.inv-template {
+  background-color: var(--inv-bg);
+  color: var(--inv-text);
+  font-family: var(--inv-body);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.inv-template h1,
+.inv-template h2,
+.inv-template h3 {
+  font-family: var(--inv-heading);
+  text-transform: none;
+  letter-spacing: 1px;
+}
+
+.inv-script {
+  font-family: var(--inv-script) !important;
+  font-size: 5rem;
+  color: var(--inv-primary);
+  font-weight: 400;
+  margin: 0;
+  line-height: 1;
+}
+
+.inv-btn {
+  background: transparent;
+  border: 1px solid var(--inv-primary);
+  color: var(--inv-primary);
+  padding: 12px 30px;
+  font-family: var(--inv-body);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.inv-btn:hover {
+  background: var(--inv-primary);
+  color: var(--inv-accent);
+}
+
+/* Splash Screen */
+.inv-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--inv-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.inv-splash.hidden {
+  transform: translateY(-100%);
+}
+
+.inv-splash .inv-sub {
+  letter-spacing: 5px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+}
+
+.inv-enter-btn {
+  background: var(--inv-button);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-family: var(--inv-body);
+  letter-spacing: 3px;
+  cursor: pointer;
+  animation: inv-pulse 2s infinite;
+}
+
+@keyframes inv-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(199, 189, 177, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(199, 189, 177, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(199, 189, 177, 0); }
+}
+
+/* Music Toggle */
+.inv-music-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--inv-button);
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.inv-music-toggle.playing {
+  animation: inv-spin 4s linear infinite;
+}
+
+@keyframes inv-spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Main Content Layout */
+.inv-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  text-align: center;
+}
+
+/* Hero */
+.inv-hero {
+  padding: 6rem 0 3rem;
+}
+
+.inv-names {
+  font-family: var(--inv-script) !important;
+  font-size: 4.5rem;
+  color: var(--inv-primary);
+  line-height: 1.2;
+  margin: 0 0 2rem;
+}
+
+.inv-intro {
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+/* Countdown */
+.inv-countdown-section {
+  padding: 3rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--inv-primary) 30%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--inv-primary) 30%, transparent);
+}
+
+.inv-countdown-section h2 {
+  font-size: 2rem;
+  color: var(--inv-primary);
+  margin-bottom: 2rem;
+}
+
+.inv-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.inv-time-box {
+  display: flex;
+  flex-direction: column;
+  background: color-mix(in srgb, var(--inv-primary) 7%, transparent);
+  padding: 15px;
+  border-radius: 5px;
+  min-width: 70px;
+}
+
+.inv-time-num {
+  font-size: 2rem;
+}
+
+.inv-time-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+  letter-spacing: 1px;
+}
+
+/* Greeting */
+.inv-greeting {
+  padding: 4rem 0;
+}
+
+.inv-greeting-hola {
+  font-family: var(--inv-script) !important;
+  font-size: 3rem;
+  color: var(--inv-primary);
+  margin: 0;
+}
+
+.inv-greeting-name {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+.inv-greeting-text {
+  line-height: 1.8;
+}
+
+.inv-greeting-passes {
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid var(--inv-primary);
+  padding: 10px 30px;
+  border-radius: 30px;
+}
+
+.inv-passes-number {
+  background: var(--inv-button);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Common Section Styles */
+.inv-parents, .inv-locations, .inv-dresscode, .inv-itinerary, .inv-gifts, .inv-rsvp {
+  padding: 4rem 0;
+}
+
+.inv-parents {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.inv-parents h3 {
+  color: var(--inv-primary);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.inv-parents-col p {
+  line-height: 1.9;
+}
+
+.inv-location-card {
+  margin-bottom: 4rem;
+}
+
+.inv-location-card img {
+  width: 80px;
+  margin: 0 auto 1rem;
+}
+
+.inv-location-card h3 {
+  font-size: 1.8rem;
+  color: var(--inv-primary);
+}
+
+.inv-time {
+  font-size: 1.2rem;
+  margin: 1rem 0 0.3rem;
+}
+
+.inv-place {
+  opacity: 0.8;
+}
+
+/* Dress code */
+.inv-dresscode h3, .inv-itinerary h3, .inv-gifts h3, .inv-gallery h3, .inv-rsvp h3 {
+  color: var(--inv-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.inv-dress-type {
+  font-size: 1.6rem;
+  letter-spacing: 6px;
+  margin-bottom: 0.6rem;
+}
+
+.inv-dress-desc {
+  opacity: 0.75;
+}
+
+/* Itinerary */
+.inv-timeline {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.inv-timeline li {
+  padding: 15px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--inv-primary) 20%, transparent);
+}
+
+.inv-timeline li strong {
+  color: var(--inv-primary);
+  margin-right: 15px;
+}
+
+/* Gifts */
+.inv-gifts > img {
+  width: 80px;
+  margin: 0 auto 1rem;
+}
+
+.inv-gifts > p {
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.inv-gift-box {
+  border: 1px solid color-mix(in srgb, var(--inv-primary) 40%, transparent);
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.inv-gift-box p {
+  line-height: 1.7;
+}
+
+/* Gallery */
+.inv-gallery {
+  padding: 4rem 0;
+}
+
+.inv-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 2rem;
+}
+
+.inv-gallery-grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Forms */
+.inv-rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 2rem;
+}
+
+.inv-rsvp-form input,
+.inv-rsvp-form select,
+.inv-rsvp-form textarea {
+  padding: 15px;
+  border: 1px solid color-mix(in srgb, var(--inv-primary) 40%, transparent);
+  font-family: var(--inv-body);
+  background: transparent;
+  outline: none;
+  color: var(--inv-text);
+  border-radius: 6px;
+}
+
+.inv-rsvp-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.inv-rsvp .submit-btn {
+  width: 100%;
+}
+
+/* =========================================================
+   SUBPÁGINAS DE MODELO (réplica de las páginas de modelos)
+   ========================================================= */
+
+/* --- Reveal al hacer scroll --- */
+.inv-reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.inv-reveal.shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inv-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* --- Splash variantes --- */
+.inv-splash-kicker {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.inv-splash-names {
+  font-size: 3.5rem;
+  margin: 0.3rem 0;
+}
+
+.inv-splash-hint {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  animation: inv-blink 2.4s infinite;
+}
+
+@keyframes inv-blink {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}
+
+.inv-splash-signoff {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.inv-splash-initials {
+  width: 130px;
+  margin-bottom: 1rem;
+  animation: inv-float 3.5s ease-in-out infinite;
+}
+
+/* Sello de cera (Terra / Sobre) */
+.splash-seal .inv-seal-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  animation: inv-seal-pulse 2.6s ease-in-out infinite;
+}
+
+.inv-seal-img {
+  width: 180px;
+  max-width: 55vw;
+  filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes inv-seal-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.07) rotate(4deg); }
+}
+
+/* Sobre abierto (Carta) */
+.splash-envelope .inv-envelope {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.inv-envelope-left,
+.inv-envelope-right {
+  width: 150px;
+  max-width: 38vw;
+  transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.splash-envelope.hidden .inv-envelope-left {
+  transform: translateX(-130%) rotate(-14deg);
+}
+
+.splash-envelope.hidden .inv-envelope-right {
+  transform: translateX(130%) rotate(14deg);
+}
+
+.splash-envelope .inv-seal-btn {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2;
+  animation: inv-seal-pulse 2.6s ease-in-out infinite;
+}
+
+.splash-envelope .inv-seal-img {
+  width: 110px;
+}
+
+@keyframes inv-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+/* --- Hero variantes --- */
+.inv-section-title {
+  color: var(--inv-primary);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.inv-kicker {
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+}
+
+.inv-sub-title {
+  font-family: var(--inv-heading);
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  color: var(--inv-primary);
+  margin: 1.2rem 0;
+}
+
+.inv-names-y,
+.inv-names-amp {
+  display: block;
+  font-size: 0.5em;
+  opacity: 0.8;
+  margin: 0.3rem 0;
+}
+
+.inv-hero-photo-wrap {
+  position: relative;
+  margin: 1.5rem auto;
+  max-width: 340px;
+}
+
+.inv-hero-photo {
+  width: 100%;
+  display: block;
+  animation: inv-zoom-in 1.4s ease both;
+}
+
+@keyframes inv-zoom-in {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.inv-hero-frame {
+  display: block;
+  width: 110px;
+  margin: 0 auto -20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Fecha grande */
+.inv-date-big {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.inv-date-day {
+  font-family: var(--inv-heading);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--inv-primary);
+}
+
+.inv-date-month {
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 0.4rem;
+}
+
+.inv-date-year {
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  opacity: 0.75;
+}
+
+.inv-date-time {
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  letter-spacing: 2px;
+}
+
+.inv-date-weekday {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.inv-date-card {
+  border: 1px solid color-mix(in srgb, var(--inv-primary) 35%, transparent);
+  border-radius: 12px;
+  padding: 1.6rem;
+  margin: 2rem auto;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.inv-date-icon {
+  width: 60px;
+  margin-bottom: 0.5rem;
+}
+
+.inv-date-inline {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.inv-date-inline .inv-date-day {
+  font-size: 2.6rem;
+}
+
+.inv-hero-icon {
+  width: 70px;
+  margin: 0.8rem auto;
+  display: block;
+  animation: inv-float 3.5s ease-in-out infinite;
+}
+
+.inv-hero-text {
+  line-height: 1.9;
+  max-width: 460px;
+  margin: 0.8rem auto;
+}
+
+.inv-hero-flower {
+  width: 70px;
+  display: block;
+  margin: 0.5rem auto;
+}
+
+.inv-initials-top {
+  width: 160px;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.inv-initials-bottom {
+  width: 130px;
+  display: block;
+  margin: 1rem auto;
+}
+
+/* Carta (letter) */
+.hero-letter {
+  background: color-mix(in srgb, var(--inv-primary) 12%, var(--inv-bg));
+  border-radius: 16px;
+  padding: 3rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.inv-letter-line {
+  font-family: var(--inv-heading);
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  line-height: 2;
+  max-width: 420px;
+  margin: 1rem auto;
+}
+
+.inv-letter-initials {
+  width: 130px;
+  display: block;
+  margin: 1.2rem auto;
+}
+
+.letter-names {
+  font-size: 3.2rem;
+  letter-spacing: 6px;
+}
+
+.inv-letter-heart {
+  width: 60px;
+  display: block;
+  margin: 1.5rem auto 0;
+  animation: inv-heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes inv-heartbeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.12); }
+  40% { transform: scale(1); }
+}
+
+/* Pasaporte */
+.passport-kicker {
+  font-size: 1.4rem;
+  letter-spacing: 8px;
+  font-family: var(--inv-heading);
+}
+
+.passport-photo-wrap {
+  border: 3px double var(--inv-primary);
+  padding: 8px;
+  max-width: 320px;
+  margin: 1rem auto;
+  background: var(--inv-accent);
+}
+
+.passport-photo {
+  width: 100%;
+  display: block;
+  filter: sepia(0.25);
+}
+
+.passport-card {
+  border: 2px solid var(--inv-primary);
+  border-radius: 10px;
+  padding: 1.4rem;
+  text-align: left;
+  max-width: 380px;
+  margin: 1.5rem auto;
+  background: color-mix(in srgb, var(--inv-accent) 70%, transparent);
+}
+
+.passport-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--inv-primary) 40%, transparent);
+}
+
+.passport-label {
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  font-weight: bold;
+  opacity: 0.75;
+}
+
+.passport-value {
+  font-family: var(--inv-heading);
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+.passport-date {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--inv-primary) 40%, transparent);
+}
+
+.passport-month {
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+}
+
+.passport-day {
+  font-family: var(--inv-heading);
+  font-size: 2.2rem;
+  color: var(--inv-primary);
+}
+
+.passport-time {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.passport-quote {
+  font-style: italic;
+  max-width: 380px;
+  margin: 1.5rem auto 0;
+  line-height: 1.9;
+  opacity: 0.85;
+}
+
+/* --- Contadores / Faltan --- */
+.inv-countdown-block {
+  margin-top: 1.5rem;
+}
+
+.inv-countdown-label {
+  font-family: var(--inv-heading);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--inv-primary);
+}
+
+.inv-countdown-section .inv-countdown-block {
+  margin-top: 0;
+}
+
+/* --- Calendario (Carmesí) --- */
+.inv-calendar-section {
+  padding: 3rem 0;
+}
+
+.inv-calendar-date {
+  font-family: var(--inv-script);
+  font-size: 2.2rem;
+  color: var(--inv-primary);
+}
+
+.inv-calendar {
+  max-width: 320px;
+  margin: 1.5rem auto;
+  border: 1px solid color-mix(in srgb, var(--inv-primary) 35%, transparent);
+  border-radius: 12px;
+  padding: 1.2rem;
+  background: var(--inv-accent);
+}
+
+.inv-calendar-title {
+  font-family: var(--inv-heading);
+  letter-spacing: 3px;
+  margin-bottom: 0.8rem;
+}
+
+.inv-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.inv-calendar-grid.weekdays span {
+  font-size: 0.7rem;
+  opacity: 0.6;
+  letter-spacing: 1px;
+  padding: 4px 0;
+}
+
+.inv-calendar-grid.days span {
+  font-size: 0.8rem;
+  padding: 5px 0;
+  border-radius: 50%;
+}
+
+.inv-calendar-grid.days span.highlight {
+  background: var(--inv-button);
+  color: white;
+  font-weight: bold;
+}
+
+/* --- Cita / versículo --- */
+.inv-quote {
+  padding: 3rem 0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.inv-quote p {
+  font-family: var(--inv-heading);
+  font-style: italic;
+  line-height: 1.9;
+  font-size: 1.05rem;
+}
+
+.inv-quote span {
+  display: block;
+  margin-top: 0.8rem;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.inv-quote-deco,
+.inv-quote-initials {
+  width: 110px;
+  display: block;
+  margin: 0 auto 1.2rem;
+}
+
+/* --- Pases / invitado --- */
+.inv-passes-card {
+  padding: 3rem 2rem;
+  border: 1px solid color-mix(in srgb, var(--inv-primary) 35%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--inv-primary) 5%, transparent);
+  margin: 2rem 0;
+}
+
+.inv-passes-lead,
+.inv-passes-passlead {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  opacity: 0.8;
+}
+
+.inv-passes-name {
+  font-family: var(--inv-script) !important;
+  font-size: 2.6rem;
+  color: var(--inv-primary);
+  margin: 0.6rem 0;
+}
+
+.inv-passes-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid var(--inv-primary);
+  padding: 10px 30px;
+  border-radius: 30px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.inv-passes-namelead {
+  margin-top: 1.2rem;
+}
+
+.inv-greeting {
+  padding: 3rem 0;
+}
+
+.inv-greeting-text {
+  line-height: 2;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* --- Padres --- */
+.inv-parents {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.inv-parents-deco {
+  width: 140px;
+  display: block;
+  margin: 0 auto 1.5rem;
+}
+
+.inv-parents-intro {
+  max-width: 480px;
+  margin: 0 auto 2rem;
+  line-height: 1.9;
+}
+
+.inv-parents-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.inv-parents-col h3 {
+  color: var(--inv-primary);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.inv-parents-col p {
+  line-height: 1.9;
+}
+
+.inv-divider {
+  display: block;
+  width: 150px;
+  margin: 1rem auto;
+}
+
+/* --- Itinerario con iconos --- */
+.inv-itinerary-deco {
+  display: block;
+  width: 160px;
+  margin: 0 auto 1rem;
+}
+
+.inv-timeline-icons {
+  list-style: none;
+  padding: 0;
+  max-width: 340px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.inv-timeline-icons li {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 0;
+}
+
+.inv-timeline-icons li img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.inv-tl-label {
+  font-family: var(--inv-heading);
+  letter-spacing: 1px;
+}
+
+.inv-tl-time {
+  color: var(--inv-primary);
+  font-weight: bold;
+}
+
+.inv-timeline-icons.dashed li {
+  position: relative;
+}
+
+.inv-itinerary-note {
+  max-width: 420px;
+  margin: 2rem auto 0;
+  opacity: 0.85;
+}
+
+.inv-itinerary-note img {
+  width: 54px;
+  display: block;
+  margin: 0 auto 0.8rem;
+}
+
+.inv-itinerary-note p {
+  line-height: 1.9;
+  font-size: 0.92rem;
+}
+
+/* --- Dress code --- */
+.inv-dress-icon {
+  width: 70px;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.inv-dress-icons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 1rem;
+}
+
+.inv-dress-icons img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.inv-dress-items,
+.inv-dress-details {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.inv-dress-item,
+.inv-dress-detail {
+  max-width: 240px;
+}
+
+.inv-dress-item img,
+.inv-dress-detail img {
+  width: 80px;
+  display: block;
+  margin: 0 auto 0.6rem;
+}
+
+.inv-dress-item-label {
+  font-family: var(--inv-heading);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--inv-primary);
+  font-size: 0.85rem;
+}
+
+.inv-dress-item-text {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  opacity: 0.85;
+  margin-top: 0.3rem;
+}
+
+.inv-dress-palette {
+  margin-top: 1.5rem;
+}
+
+.inv-dress-palette img {
+  max-width: 260px;
+  display: block;
+  margin: 0.8rem auto;
+}
+
+.inv-dress-palette p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* --- Compartir fotos / niños / notas --- */
+.inv-share,
+.inv-kids,
+.inv-note-card {
+  padding: 3.5rem 0;
+}
+
+.inv-share img,
+.inv-kids > img {
+  width: 70px;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.inv-share p,
+.inv-kids p,
+.inv-note-card p {
+  line-height: 1.9;
+  max-width: 470px;
+  margin: 0 auto;
+}
+
+.inv-kids-deco {
+  width: 120px !important;
+  opacity: 0.9;
+}
+
+.inv-note-card {
+  background: color-mix(in srgb, var(--inv-primary) 7%, transparent);
+  border-radius: 14px;
+  padding: 2.5rem 1.5rem !important;
+  margin: 1rem 0;
+}
+
+/* --- Regalos --- */
+.inv-gift-icon {
+  width: 70px;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.inv-gift-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.inv-gift-box {
+  border: 1px solid color-mix(in srgb, var(--inv-primary) 40%, transparent);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.inv-gift-box img {
+  width: 64px;
+  display: block;
+  margin: 0 auto 0.6rem;
+}
+
+/* --- CTA final / cierre --- */
+.inv-cta-final {
+  padding: 3.5rem 0;
+}
+
+.inv-cta-final h2 {
+  font-size: 2rem;
+  color: var(--inv-primary);
+  letter-spacing: 5px;
+}
+
+.inv-cta-final p {
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.inv-final {
+  padding: 3.5rem 0;
+}
+
+.inv-final img {
+  width: 150px;
+  display: block;
+  margin: 1.5rem auto 0;
+}
+
+/* --- Galería --- */
+.inv-gallery-grid.single {
+  grid-template-columns: 1fr;
+}
+
+.inv-gallery-grid img {
+  animation: inv-zoom-in 1s ease both;
+}
+
+/* --- Firma final --- */
+.inv-signature {
+  padding: 4rem 0 2rem;
+  text-align: center;
+}
+
+.inv-signature-deco {
+  width: 130px;
+  display: block;
+  margin: 0 auto 1.2rem;
+}
+
+.inv-signature .inv-script {
+  font-size: 3rem;
+  margin: 0.3rem 0;
+}
+
+.inv-footer-note {
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+  .inv-script {
+    font-size: 3.2rem;
+  }
+
+  .inv-names {
+    font-size: 3rem;
+  }
+
+  .inv-time-box {
+    min-width: 60px;
+    padding: 10px;
+  }
+
+  .inv-time-num {
+    font-size: 1.5rem;
+  }
+
+  .inv-splash-names {
+    font-size: 2.6rem;
+  }
+
+  .letter-names {
+    font-size: 2.4rem;
+  }
+
+  .inv-envelope-left,
+  .inv-envelope-right {
+    width: 110px;
+  }
+}

@@ -1,0 +1,57 @@
+.guest-manager {
+  background: var(--color-secondary);
+}
+
+.guest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.guest-card {
+  background: var(--color-light);
+  border-radius: var(--border-radius-main);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-smooth);
+}
+
+.guest-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.guest-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1.5rem;
+}
+
+.guest-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.guest-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-black);
+  margin-bottom: 1rem;
+}
+
+.guest-card p {
+  color: var(--color-dark);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.guest-action {
+  text-align: center;
+  margin-top: 3.5rem;
+}

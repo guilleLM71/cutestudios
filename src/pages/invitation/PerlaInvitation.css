@@ -1,0 +1,317 @@
+.perla-invitation {
+  background-color: #FDFCF0;
+  color: #333333;
+  font-family: 'Marcellus', serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.perla-script {
+  font-family: 'MonteCarlo', cursive;
+  font-size: 5rem;
+  color: #D4AF37;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1;
+}
+
+.perla-btn {
+  background: transparent;
+  border: 1px solid #D4AF37;
+  color: #D4AF37;
+  padding: 12px 30px;
+  font-family: 'Marcellus', serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.perla-btn:hover {
+  background: #D4AF37;
+  color: #fff;
+}
+
+/* Splash Screen */
+.perla-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FDFCF0 url('https://vogastudios.com/wp-content/uploads/2025/09/circulo-dorado-modelo-perla.png') center/contain no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.perla-splash.hidden {
+  transform: translateY(-100%);
+}
+
+.perla-splash .perla-sub {
+  letter-spacing: 5px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+}
+
+.perla-enter-btn {
+  background: #D4AF37;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-family: 'Marcellus', serif;
+  letter-spacing: 3px;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+/* Music Toggle */
+.music-toggle {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #D4AF37;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.music-toggle.playing {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* Main Content Layout */
+.perla-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  text-align: center;
+}
+
+/* Hero */
+.perla-hero {
+  padding: 6rem 0 3rem;
+}
+
+.laurel-wreath {
+  background: url('https://vogastudios.com/wp-content/uploads/2025/12/modelo-perla-laurel-al-rededor-principal.png') center/contain no-repeat;
+  padding: 80px 20px;
+  margin-bottom: 2rem;
+}
+
+.perla-names {
+  font-family: 'MonteCarlo', cursive;
+  font-size: 4.5rem;
+  color: #656F52;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.perla-intro {
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Countdown */
+.perla-countdown-section {
+  padding: 3rem 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.3);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.perla-countdown-section h2 {
+  font-size: 2rem;
+  color: #D4AF37;
+  margin-bottom: 2rem;
+}
+
+.perla-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.time-box {
+  display: flex;
+  flex-direction: column;
+  background: rgba(212, 175, 55, 0.05);
+  padding: 15px;
+  border-radius: 5px;
+  min-width: 70px;
+}
+
+.time-num {
+  font-size: 2rem;
+  color: #333;
+}
+
+.time-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+/* Greeting */
+.perla-greeting {
+  padding: 4rem 0;
+}
+
+.greeting-hola {
+  font-family: 'MonteCarlo', cursive;
+  font-size: 3rem;
+  color: #D4AF37;
+  margin: 0;
+}
+
+.greeting-name {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+.greeting-passes {
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #D4AF37;
+  padding: 10px 30px;
+  border-radius: 30px;
+}
+
+.passes-number {
+  background: #D4AF37;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Common Section Styles */
+.perla-parents, .perla-locations, .perla-dresscode, .perla-itinerary, .perla-gifts, .perla-rsvp {
+  padding: 4rem 0;
+}
+
+.perla-parents {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.perla-parents h3 {
+  color: #D4AF37;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.location-card {
+  margin-bottom: 4rem;
+}
+
+.location-card img {
+  width: 80px;
+  margin-bottom: 1rem;
+}
+
+.location-card h3 {
+  font-size: 1.8rem;
+  color: #656F52;
+}
+
+.location-card .time {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+
+/* Itinerary */
+.timeline {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.timeline li {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.timeline li strong {
+  color: #D4AF37;
+  margin-right: 15px;
+}
+
+/* Forms */
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 2rem;
+}
+
+.rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+  padding: 15px;
+  border: 1px solid rgba(0,0,0,0.1);
+  font-family: 'Marcellus', serif;
+  background: transparent;
+  outline: none;
+}
+
+.rsvp-form textarea {
+  min-height: 100px;
+}
+
+.submit-btn {
+  width: 100%;
+}
+
+/* Gallery */
+.perla-gallery {
+  padding: 4rem 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 2rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}

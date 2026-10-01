@@ -1,0 +1,48 @@
+.packages {
+  background: var(--color-secondary);
+  color: var(--color-black);
+}
+
+.packages .section-title {
+  color: var(--color-black);
+  font-family: var(--font-script);
+  font-size: 4rem;
+  margin-bottom: -1rem;
+  text-transform: none;
+}
+
+.packages .section-subtitle {
+  color: var(--color-dark);
+  font-family: var(--font-heading);
+  letter-spacing: 3px;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.packages-lead {
+  text-align: center;
+  color: var(--color-dark);
+  font-family: var(--font-serif-alt);
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto 0.5rem;
+  line-height: 1.7;
+}
+
+.packages-names {
+  text-align: center;
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
